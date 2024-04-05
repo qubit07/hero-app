@@ -2,7 +2,6 @@
 using HeroApp.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using SQLitePCL;
 
 namespace HeroApp.Controllers
 {
