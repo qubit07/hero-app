@@ -1,6 +1,7 @@
 ﻿using HeroApp.Data;
 using HeroApp.DTOs;
 using HeroApp.Entities;
+using HeroApp.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
@@ -12,14 +13,16 @@ namespace HeroApp.Controllers
     {
 
         private readonly DataContext _context;
+        private readonly ITokenService _tokenService;
 
-        public AccountController(DataContext context)
+        public AccountController(DataContext context, ITokenService tokenService)
         {
             _context = context;
+            _tokenService = tokenService;
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<AppUser>> Register(RegisterDto register)
+        public async Task<ActionResult<UserDto>> Register(RegisterDto register)
         {
 
             if (await UserExits(register.Username))
@@ -38,12 +41,16 @@ namespace HeroApp.Controllers
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
-            return user;
+            return new UserDto
+            {
+                Username = user.UserName,
+                Token = _tokenService.CreateToken(user)
+            };
 
         }
 
         [HttpGet("login")]
-        public async Task<ActionResult<AppUser>> Login(LoginDto loginDto)
+        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == loginDto.Username);
 
@@ -62,7 +69,11 @@ namespace HeroApp.Controllers
                     return Unauthorized();
                 }
             }
-            return user;
+            return new UserDto
+            {
+                Username = user.UserName,
+                Token = _tokenService.CreateToken(user)
+            };
 
         }
 
