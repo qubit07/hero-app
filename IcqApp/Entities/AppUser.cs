@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HeroApp.Entities
+namespace IcqApp.Entities
 {
     public class AppUser
     {

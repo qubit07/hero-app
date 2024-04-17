@@ -1,4 +1,4 @@
-using HeroApp.Extensions;
+using IcqApp.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,13 +1,13 @@
-﻿using HeroApp.Data;
-using HeroApp.DTOs;
-using HeroApp.Entities;
-using HeroApp.Interfaces;
+﻿using IcqApp.Data;
+using IcqApp.DTOs;
+using IcqApp.Entities;
+using IcqApp.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace HeroApp.Controllers
+namespace IcqApp.Controllers
 {
     public class AccountController : BaseApiController
     {

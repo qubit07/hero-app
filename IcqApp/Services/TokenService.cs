@@ -1,11 +1,11 @@
-﻿using HeroApp.Entities;
-using HeroApp.Interfaces;
+﻿using IcqApp.Entities;
+using IcqApp.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace HeroApp.Services
+namespace IcqApp.Services
 {
     public class TokenService : ITokenService
     {

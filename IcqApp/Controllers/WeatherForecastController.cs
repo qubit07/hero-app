@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace HeroApp.Controllers
+namespace IcqApp.Controllers
 {
     [ApiController]
     [Route("[controller]")]

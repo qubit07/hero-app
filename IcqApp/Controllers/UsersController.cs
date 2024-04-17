@@ -1,10 +1,10 @@
-﻿using HeroApp.Data;
-using HeroApp.Entities;
+﻿using IcqApp.Data;
+using IcqApp.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace HeroApp.Controllers
+namespace IcqApp.Controllers
 {
 
     [Authorize]

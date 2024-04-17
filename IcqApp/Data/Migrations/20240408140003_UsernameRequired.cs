@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace HeroApp.Data.Migrations
+namespace IcqApp.Data.Migrations
 {
     /// <inheritdoc />
     public partial class UsernameRequired : Migration

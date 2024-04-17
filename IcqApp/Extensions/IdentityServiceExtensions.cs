@@ -2,7 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace HeroApp.Extensions
+namespace IcqApp.Extensions
 {
     public static class IdentityServiceExtensions
     {

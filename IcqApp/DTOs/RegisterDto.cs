@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HeroApp.DTOs
+namespace IcqApp.DTOs
 {
     public class RegisterDto
     {

@@ -1,7 +1,7 @@
-﻿using HeroApp.Entities;
+﻿using IcqApp.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace HeroApp.Data
+namespace IcqApp.Data
 {
     public class DataContext : DbContext
     {

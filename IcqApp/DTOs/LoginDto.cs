@@ -1,4 +1,4 @@
-﻿namespace HeroApp.DTOs
+﻿namespace IcqApp.DTOs
 {
     public class LoginDto
     {

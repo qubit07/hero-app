@@ -1,9 +1,9 @@
-﻿using HeroApp.Data;
-using HeroApp.Interfaces;
-using HeroApp.Services;
+﻿using IcqApp.Data;
+using IcqApp.Interfaces;
+using IcqApp.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace HeroApp.Extensions
+namespace IcqApp.Extensions
 {
     public static class ApplicationServiceExtensions
     {

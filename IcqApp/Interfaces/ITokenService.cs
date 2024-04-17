@@ -1,6 +1,6 @@
-﻿using HeroApp.Entities;
+﻿using IcqApp.Entities;
 
-namespace HeroApp.Interfaces
+namespace IcqApp.Interfaces
 {
     public interface ITokenService
     {

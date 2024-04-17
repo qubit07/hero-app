@@ -1,4 +1,4 @@
-namespace HeroApp
+namespace IcqApp
 {
     public class WeatherForecast
     {
