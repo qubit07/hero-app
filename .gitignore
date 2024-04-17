@@ -488,3 +488,7 @@ $RECYCLE.BIN/
 /IcqApp/appsettings.Development.json
 /IcqApp/icqapp.db-shm
 /IcqApp/icqapp.db-wal
+/IcqApp/icqapp.db
+/IcqApp/icqapp.db-shm
+/IcqApp/icqapp.db-wal
+/IcqApp/appsettings.json
