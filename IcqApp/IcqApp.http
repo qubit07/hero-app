@@ -1,6 +1,6 @@
 @HeroApp_HostAddress = http://localhost:5017
 
-GET {{HeroApp_HostAddress}}/weatherforecast/
+GET {{IcqApp_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
