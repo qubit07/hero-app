@@ -488,3 +488,5 @@ $RECYCLE.BIN/
 /HeroApp/appsettings.Development.json
 /HeroApp/heroapp.db-shm
 /HeroApp/heroapp.db-wal
+/IcqApp/icqapp.db-shm
+/IcqApp/icqapp.db-wal
