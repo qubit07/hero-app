@@ -482,11 +482,9 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
-/HeroApp/Properties/launchSettings.json
-/HeroApp/heroapp.db
-/HeroApp/appsettings.json
-/HeroApp/appsettings.Development.json
-/HeroApp/heroapp.db-shm
-/HeroApp/heroapp.db-wal
-/IcqApp/icqapp.db-shm
-/IcqApp/icqapp.db-wal
+/IcqApp/Properties/launchSettings.json
+/IcqApp/heroapp.db
+/IcqApp/appsettings.json
+/IcqApp/appsettings.Development.json
+/IcqApp/heroapp.db-shm
+/IcqApp/heroapp.db-wal
