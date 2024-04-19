@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/user';
 import { BehaviorSubject, map } from 'rxjs';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -45,7 +44,6 @@ export class AccountService {
   }
 
   setCurrentUser(user: User) {
-    console.log("set current user to: " + user.username);
     this.currentUserSource.next(user);
   }
 

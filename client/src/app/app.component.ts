@@ -12,7 +12,7 @@ import { HomeComponent } from './home/home.component';
   imports: [RouterOutlet, CommonModule, NavComponent, HomeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  providers: [AccountService]
+  providers: []
 })
 export class AppComponent implements OnInit {
   title: string = 'hero app';
