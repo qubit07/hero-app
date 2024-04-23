@@ -19,7 +19,7 @@ namespace IcqApp.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.3");
 
-            modelBuilder.Entity("HeroApp.Entities.AppUser", b =>
+            modelBuilder.Entity("IcqApp.Entities.AppUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
