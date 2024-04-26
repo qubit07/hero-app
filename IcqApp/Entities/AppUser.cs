@@ -1,5 +1,4 @@
-﻿using IcqApp.Extensions;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace IcqApp.Entities
 {
@@ -23,9 +22,6 @@ namespace IcqApp.Entities
         public DateTime LastActive { get; set; } = DateTime.UtcNow;
 
         public List<Photo> Photos { get; set; } = new List<Photo>();
-
-
-        public int GetAge() { return DateOfBirth.CalculateAge(); }
 
     }
 }
