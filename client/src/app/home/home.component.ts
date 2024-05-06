@@ -9,14 +9,11 @@ import { RegisterComponent } from '../register/register.component';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   users: any;
   registerMode = false;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   registerToggle() {
     this.registerMode = !this.registerMode;

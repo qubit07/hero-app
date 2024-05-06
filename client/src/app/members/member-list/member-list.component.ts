@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Member } from '../../models/member';
 import { MembersService } from '../../services/members.service';
 import { CommonModule } from '@angular/common';
@@ -11,14 +11,11 @@ import { MemberCardComponent } from '../member-card/member-card.component';
   templateUrl: './member-list.component.html',
   styleUrl: './member-list.component.css'
 })
-export class MemberListComponent implements OnInit {
+export class MemberListComponent {
 
   members: Member[] = [];
 
   constructor(private memberService: MembersService) {
-
-  }
-  ngOnInit(): void {
     this.loadMembers();
   }
 

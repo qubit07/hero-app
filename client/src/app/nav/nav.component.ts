@@ -22,9 +22,6 @@ export class NavComponent {
 
   }
 
-  ngOnInit(): void {
-  }
-
   login() {
     this.accountService.login(this.model).subscribe({
       next: _ => this.router.navigateByUrl('/members'),
