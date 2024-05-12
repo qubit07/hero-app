@@ -1,1 +1,40 @@
-<h1 *ngIf="member">{{member.knownAs}}</h1>>
+<div class="row" *ngIf="member">
+    <div class="col-4">
+        <div class="card">
+            <img src="{{member.photoUrl || './assets/icq.png'}}" alt="{{member.knownAs}}"
+                class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div>
+                    <strong>lastActive:</strong>
+                    <p>{{member.lastActive}}</p>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button class="btn btn-primary">Profile</button>
+                    <button class="btn btn-success">Messages</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-8">
+        <tabset class="member-tabset">
+            <tab heading="About">
+                <h4>Desciption</h4>
+                <p>{{member.knownAs}} </p>
+                <h4>Last online at</h4>
+                <p>{{member.lastActive}}</p>
+            </tab>
+            <tab heading="Screenshots" #photoTab="tab">
+                <gallery *ngIf="photoTab.active" [items]="images" class="gallery"></gallery>
+            </tab>
+
+            <tab heading="Messages">
+                <p>Messages are here.</p>
+            </tab>
+
+        </tabset>
+    </div>
+</div>
