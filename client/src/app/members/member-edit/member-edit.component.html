@@ -1,0 +1,56 @@
+<div class="row" *ngIf="member">
+    <div class="col-4">
+        <h1>Your profile</h1>
+    </div>
+    <div class="col-8">
+        <div class="alert alert-info" *ngIf="editForm.dirty">
+            <p><strong>Information: </strong>You have made changes. Any unsaved changed will be lost</p>
+
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <img src="{{member.photoUrl || './assets/icq.png'}}" alt="{{member.knownAs}}"
+                class="card-img-top img-thumbnail">
+            <div class="card-body">
+                <div>
+                    <strong>lastActive:</strong>
+                    <p>{{member.lastActive}}</p>
+                </div>
+            </div>
+
+            <div class="card-footer">
+                <div class="btn-group d-flex">
+                    <button type="submit" form="editForm" [disabled]="!editForm.dirty"
+                        class="btn btn-success col-12">Save changes</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-8">
+        <tabset class="member-tabset">
+            <tab heading="About">
+                <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
+                    <label for="knownAs">
+                        <h4><strong>Known as</strong></h4>
+                    </label>
+                    <input type="text" name="knownAs" class="form-control mx-2" [(ngModel)]="member.knownAs">
+
+                    <h4 class="mt-2">Desciption</h4>
+                    <textarea class="form-control" name="desciption" rows="5"></textarea>
+
+                    <h4 class="mt-2">Last online at</h4>
+                    <p>{{member.lastActive}}</p>
+
+                </form>
+
+            </tab>
+            <tab heading="Edit Screenshots">
+                <p>Screenshot edit will go here</p>
+            </tab>
+
+        </tabset>
+    </div>
+</div>
