@@ -1,7 +1,9 @@
-﻿using IcqApp.DTOs;
+﻿using AutoMapper;
+using IcqApp.DTOs;
 using IcqApp.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace IcqApp.Controllers
 {
@@ -10,10 +12,12 @@ namespace IcqApp.Controllers
     public class UsersController : BaseApiController
     {
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
-        public UsersController(IUserRepository userRepository)
+        public UsersController(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -27,6 +31,27 @@ namespace IcqApp.Controllers
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {
             return await _userRepository.GetMemberAsync(username);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
+        {
+            var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var user = await _userRepository.GetUserByUsernameAsync(username);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+            _mapper.Map(memberUpdateDto, user);
+
+            var isUpdated = await _userRepository.SaveAllAsync();
+
+            if (isUpdated)
+            {
+                return NoContent();
+            }
+            return BadRequest("Failed to update user");
         }
     }
 
