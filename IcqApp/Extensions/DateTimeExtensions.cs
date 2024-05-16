@@ -1,6 +1,6 @@
 ﻿namespace IcqApp.Extensions
 {
-    public static class DateTimeExtension
+    public static class DateTimeExtensions
     {
         public static int CalculateAge(this DateOnly dateOnly)
         {

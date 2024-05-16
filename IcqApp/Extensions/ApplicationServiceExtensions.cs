@@ -1,4 +1,5 @@
 ﻿using IcqApp.Data;
+using IcqApp.Helpers;
 using IcqApp.Interfaces;
 using IcqApp.Services;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,8 @@ namespace IcqApp.Extensions
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.Configure<CloudinarySettings>(config.GetSection("CloudSettings"));
+            services.AddScoped<IPhotoService, PhotoService>();
 
             return services;
         }
