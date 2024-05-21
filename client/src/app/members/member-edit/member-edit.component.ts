@@ -8,11 +8,12 @@ import { CommonModule } from '@angular/common';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { PhotoEditorComponent } from '../photo-editor/photo-editor.component';
 
 @Component({
   selector: 'app-member-edit',
   standalone: true,
-  imports: [CommonModule, TabsModule, FormsModule],
+  imports: [CommonModule, TabsModule, FormsModule, PhotoEditorComponent],
   templateUrl: './member-edit.component.html',
   styleUrl: './member-edit.component.css'
 })
@@ -36,7 +37,7 @@ export class MemberEditComponent {
 
   loadMember() {
     if (!this.user) return;
-
+    const s = this.memberService.getMember("");
     this.memberService.getMember(this.user.username).subscribe({
       next: member => this.member = member
     })
