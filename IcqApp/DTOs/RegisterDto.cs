@@ -9,7 +9,16 @@ namespace IcqApp.DTOs
         public string Username { get; set; }
 
         [Required]
+        [MinLength(3)]
+        public string KnownAs { get; set; }
+
+        [Required]
+        public DateOnly? DateOfBirth { get; set; }
+
+        [Required]
         [MinLength(8)]
         public string Password { get; set; }
+
+
     }
 }
