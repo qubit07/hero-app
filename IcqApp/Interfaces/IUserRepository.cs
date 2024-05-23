@@ -1,5 +1,6 @@
 ﻿using IcqApp.DTOs;
 using IcqApp.Entities;
+using IcqApp.Helpers;
 
 namespace IcqApp.Interfaces
 {
@@ -7,10 +8,10 @@ namespace IcqApp.Interfaces
     {
         void Update(AppUser user);
         Task<bool> SaveAllAsync();
-        Task<IEnumerable<AppUser>> GetUsersAsync();
+        Task<PagedList<AppUser>> GetUsersAsync(UserParams userParams);
         Task<AppUser> GetUserByIdAsync(int id);
         Task<AppUser> GetUserByUsernameAsync(string username);
         Task<MemberDto> GetMemberAsync(string username);
-        Task<IEnumerable<MemberDto>> GetMembersAsync();
+        Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams);
     }
 }
