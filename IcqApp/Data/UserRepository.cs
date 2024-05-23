@@ -30,6 +30,8 @@ namespace IcqApp.Data
         public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
         {
             var query = _context.Users
+                .AsQueryable()
+                .Where(u => u.UserName != userParams.CurrentUsername)
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .AsNoTracking();
 
