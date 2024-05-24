@@ -30,20 +30,28 @@ namespace IcqApp.Data
         public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
         {
             var query = _context.Users
-                .AsQueryable()
-                .Where(u => u.UserName != userParams.CurrentUsername)
-                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
-                .AsNoTracking();
+                .AsQueryable();
 
-            return await PagedList<MemberDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
+            query = query.Where(u => u.UserName != userParams.CurrentUsername);
 
+            if (!string.IsNullOrEmpty(userParams.KnownAs))
+            {
+                query = query.Where(u => u.KnownAs.Contains(userParams.KnownAs));
+            }
 
+            query = userParams.OrderBy switch
+            {
+                "created" => query.OrderByDescending(u => u.Created),
+                _ => query.OrderByDescending(u => u.LastActive)
+            };
+
+            return await PagedList<MemberDto>.CreateAsync(query.ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+                .AsNoTracking(), userParams.PageNumber, userParams.PageSize);
         }
 
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
             return await _context.Users
-                .Include(u => u.Photos)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 
