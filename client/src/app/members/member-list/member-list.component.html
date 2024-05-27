@@ -1,3 +1,29 @@
+<div class="text-center mt-3">
+    <h2>Your matches - {{pagination?.totalItems}} found</h2>
+</div>
+<div class="container mt-3" *ngIf="userParams">
+    <form #form="ngForm" class="d-flex mb-3" (ngSubmit)="loadMembers()" autocomplete="off">
+        <div class="d-flex px-2">
+            <label class="col-form-label">Known as:</label>
+            <input type="text" class="form-control ml-1" name="knownAs" [(ngModel)]="userParams.knownAs"
+                style="width: 200px;">
+        </div>
+        <button class="btn btn-primary ms-1" type="submit">Apply Filters</button>
+        <button (click)="resetFilters()" class="btn btn-info ms-1" type="submit">Reset Filters</button>
+        <div class="col">
+            <div class="btn-group float-end">
+                <input mdbRadio type="radio" class="btn-check" id="orderByOption1" autocomplete="off" [checked]="true"
+                    value="lastActive" (click)="loadMembers()" [(ngModel)]="userParams.orderBy" name="orderBy" />
+                <label class="btn btn-primary" for="orderByOption1">Last active</label>
+                <input mdbRadio type="radio" class="btn-check" name="orderBy" id="orderByOption2" autocomplete="off"
+                    (click)="loadMembers()" [(ngModel)]="userParams.orderBy" value="created" />
+                <label class="btn btn-primary" for="orderByOption2">Newest members</label>
+
+            </div>
+        </div>
+    </form>
+</div>
+
 <div class="row">
     <div class="col-2" *ngFor="let member of members">
         <app-member-card [member]="member"></app-member-card>

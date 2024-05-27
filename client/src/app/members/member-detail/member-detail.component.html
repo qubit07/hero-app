@@ -6,7 +6,9 @@
             <div class="card-body">
                 <div>
                     <strong>lastActive:</strong>
-                    <p>{{member.lastActive}}</p>
+                    <p>{{member.lastActive | date}}</p>
+                    <strong>member since:</strong>
+                    <p>{{member.lastActive | date}}</p>
                 </div>
             </div>
 
@@ -25,7 +27,9 @@
                 <h4>Desciption</h4>
                 <p>{{member.knownAs}} </p>
                 <h4>Last online at</h4>
-                <p>{{member.lastActive}}</p>
+                <p>{{member.lastActive | date: 'longDate'}}</p>
+                <h4>Member since</h4>
+                <p>{{member.created| date: 'longDate'}}</p>
             </tab>
             <tab heading="Screenshots" #photoTab="tab">
                 <gallery *ngIf="photoTab.active" [items]="images" class="gallery"></gallery>
