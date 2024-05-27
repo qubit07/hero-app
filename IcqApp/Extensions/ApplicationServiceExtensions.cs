@@ -18,6 +18,7 @@ namespace IcqApp.Extensions
             services.AddCors();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IFriendshipRepository, FriendshipRepository>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.Configure<CloudinarySettings>(config.GetSection("CloudSettings"));
             services.AddScoped<IPhotoService, PhotoService>();

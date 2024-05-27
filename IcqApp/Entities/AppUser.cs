@@ -23,5 +23,9 @@ namespace IcqApp.Entities
 
         public List<Photo> Photos { get; set; } = new List<Photo>();
 
+        public List<UserFriendship> FriendByUsers { get; set; }
+
+        public List<UserFriendship> FriendUsers { get; set; }
+
     }
 }

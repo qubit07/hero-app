@@ -6,7 +6,6 @@ import { MemberCardComponent } from '../member-card/member-card.component';
 import { Pagination } from '../../models/pagination';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserParams } from '../../models/userParams';
-import { User } from '../../models/user';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
