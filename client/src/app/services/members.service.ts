@@ -97,8 +97,12 @@ export class MembersService {
     return this.http.post(this.baseUlr + 'friendship/' + username, {});
   }
 
-  getFriendships(predicate: string) {
-    return this.http.get<Member[]>(this.baseUlr + 'friendship?predicate=' + predicate);
+  getFriendships(predicate: string, pageNumber: number, pageSize: number) {
+    let params = this.getPaginationHeaders(pageNumber, pageSize);
+
+    params = params.append('predicate', predicate);
+
+    return this.getPaginatedResult<Member[]>(this.baseUlr + 'friendship', params);
   }
 
   private getPaginatedResult<T>(url: string, params: HttpParams) {

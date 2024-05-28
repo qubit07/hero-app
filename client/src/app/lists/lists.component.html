@@ -24,4 +24,8 @@
             <app-member-card [member]="member"></app-member-card>
         </div>
     </div>
+    <div class="d-flex justify-content-center" *ngIf="pagination">
+        <ngb-pagination [collectionSize]="pagination.totalPages*10" [(page)]="pagination.currentPage"
+            (pageChange)="pageChanged($event)" aria-label="Default pagination" />
+    </div>
 </div>
