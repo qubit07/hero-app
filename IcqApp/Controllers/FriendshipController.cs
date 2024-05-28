@@ -1,6 +1,7 @@
 ﻿using IcqApp.DTOs;
 using IcqApp.Entities;
 using IcqApp.Extensions;
+using IcqApp.Helpers;
 using IcqApp.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -58,9 +59,11 @@ namespace IcqApp.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FriendshipDto>>> GetFriendships(string predicate)
+        public async Task<ActionResult<PagedList<FriendshipDto>>> GetFriendships([FromQuery] FriendshipParams friendshipParams)
         {
-            var users = await _friendshipRepository.GetUserFriendShips(predicate, User.GetUserId());
+            friendshipParams.UserId = User.GetUserId();
+            var users = await _friendshipRepository.GetUserFriendShips(friendshipParams);
+            Response.AddPaginationHeader(new PaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages));
 
             return Ok(users);
         }
