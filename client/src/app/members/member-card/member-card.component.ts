@@ -2,6 +2,8 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { Member } from '../../models/member';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { MembersService } from '../../services/members.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-member-card',
@@ -14,7 +16,13 @@ export class MemberCardComponent {
   @Input() member: Member | undefined
 
 
-  constructor() {
+  constructor(private memberService: MembersService, private toastr: ToastrService) {
 
+  }
+
+  addFriendship(member: Member) {
+    this.memberService.addFriendship(member.userName).subscribe({
+      next: () => this.toastr.success('You have added ' + member.knownAs)
+    });
   }
 }

@@ -93,6 +93,14 @@ export class MembersService {
     return this.http.delete(this.baseUlr + 'users/delete-photo/' + photoId);
   }
 
+  addFriendship(username: string) {
+    return this.http.post(this.baseUlr + 'friendship/' + username, {});
+  }
+
+  getFriendships(predicate: string) {
+    return this.http.get<Member[]>(this.baseUlr + 'friendship?predicate=' + predicate);
+  }
+
   private getPaginatedResult<T>(url: string, params: HttpParams) {
     const paginatedResult: PaginatedResult<T> = new PaginatedResult<T>;
 
