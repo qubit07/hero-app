@@ -27,5 +27,8 @@ namespace IcqApp.Entities
 
         public List<UserFriendship> FriendUsers { get; set; }
 
+        public List<Message> MessagesSend { get; set; }
+        public List<Message> MessagesReceived { get; set; }
+
     }
 }

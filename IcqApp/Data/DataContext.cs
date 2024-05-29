@@ -13,6 +13,8 @@ namespace IcqApp.Data
 
         public DbSet<UserFriendship> Friendships { get; set; }
 
+        public DbSet<Message> Messages { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,6 +33,18 @@ namespace IcqApp.Data
                 .WithMany(t => t.FriendByUsers)
                 .HasForeignKey(s => s.TargetUserId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Message>()
+                .HasOne(u => u.Recipient)
+                .WithMany(m => m.MessagesReceived)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Message>()
+                .HasOne(u => u.Sender)
+                .WithMany(m => m.MessagesSend)
+                .OnDelete(DeleteBehavior.Restrict);
+
+
         }
 
     }
