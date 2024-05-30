@@ -1,1 +1,55 @@
-<p>messages works!</p>
+<div class="mb-4 d-flex">
+    <div class="btn-group" name="container">
+        <label class="btn btn-primary">
+            <input mdbRadio class="btn-check" type="radio" value="Unread" (change)="onRadioChange('UnRead')" />
+            <i class="fa fa-envelope"></i> UnRead
+        </label>
+        <label class="btn btn-primary">
+            <input mdbRadio class="btn-check" type="radio" value="InBox" (change)="onRadioChange('InBox')" />
+            <i class="fa fa-envelope-open"></i> InBox
+        </label>
+        <label class="btn btn-primary">
+            <input mdbRadio class="btn-check" type="radio" value="OutBox" (change)="onRadioChange('OutBox')" />
+            <i class="fa fa-paper-plane"></i> OutBox
+        </label>
+
+    </div>
+</div>
+
+<div class="row" *ngIf="!messages || messages.length === 0">
+    <h3>No messages</h3>
+</div>
+
+<div class="row" *ngIf="messages && messages.length > 0">
+    <table class="table table-hover" style="cursor: pointer;">
+        <thead>
+            <tr>
+                <th style="width: 40%">Message</th>
+                <th style="width: 20%">From / To</th>
+                <th style="width: 20%">Sent / Received</th>
+                <th style="width: 20%"></th>
+            </tr>
+        </thead>
+        <tbody class="align-middle">
+            <tr *ngFor="let message of messages"
+                routerLink="{{container === 'OutBox' ? '/members/' + message.recipientUsername : '/members/' + message.senderUsername}}">
+                <td>{{message.content}}</td>
+                <td>
+                    <div *ngIf="container === 'OutBox'">
+                        <img class="img-circle rounded-circle me-2"
+                            src="{{message.recipientPhotoUrl || './assets/icq.png'}}" alt="recipient photo">
+                        <strong>{{message.recipientUsername |titlecase}}</strong>
+                    </div>
+                    <div *ngIf="container !== 'OutBox'">
+                        <img class="img-circle rounded-circle me-2"
+                            src="{{message.senderPhotoUrl || './assets/icq.png'}}" alt="recipient photo">
+                        <strong>{{message.senderUsername |titlecase}}</strong>
+                    </div>
+                </td>
+                <td>{{message.messageSend}}</td>
+                <td><button class="btn btn-danger">Delete</button></td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
