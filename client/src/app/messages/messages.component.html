@@ -48,7 +48,8 @@
                     </div>
                 </td>
                 <td>{{message.messageSend}}</td>
-                <td><button class="btn btn-danger">Delete</button></td>
+                <td><button (click)="$event.stopPropagation()" (click)="deleteMessage(message.id)"
+                        class="btn btn-danger">Delete</button></td>
             </tr>
         </tbody>
 

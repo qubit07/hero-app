@@ -38,6 +38,12 @@ export class MessagesComponent {
     });
   }
 
+  deleteMessage(id: number) {
+    this.messageService.deleteMessage(id).subscribe({
+      next: () => this.messages?.splice(this.messages.findIndex(m => m.id === id), 1)
+    })
+  }
+
   onRadioChange(value: string) {
     this.container = value;
     this.loadMessages();
