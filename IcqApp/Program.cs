@@ -1,6 +1,8 @@
 using IcqApp.Data;
+using IcqApp.Entities;
 using IcqApp.Extensions;
 using IcqApp.Middleware;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -50,8 +52,9 @@ if (app.Environment.IsDevelopment())
         if (fillTestDataIfEmpty)
         {
             var context = services.GetRequiredService<DataContext>();
+            var userManager = services.GetRequiredService<UserManager<AppUser>>();
             await context.Database.MigrateAsync();
-            await Seed.SeedUsers(context);
+            await Seed.SeedUsers(userManager);
         }
     }
     catch (Exception ex)
