@@ -32,6 +32,10 @@ namespace IcqApp.Extensions
                           ValidateAudience = false,
                       };
                   });
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("RequireAdminRole", policy => policy.RequireRole("admin"));
+            });
             return services;
         }
     }
