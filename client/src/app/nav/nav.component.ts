@@ -5,12 +5,13 @@ import { CommonModule } from '@angular/common';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { HasRoleDirective } from '../directives/has-role.directive';
 
 
 @Component({
   selector: 'app-nav',
   standalone: true,
-  imports: [FormsModule, CommonModule, NgbDropdownModule, RouterModule],
+  imports: [FormsModule, CommonModule, NgbDropdownModule, RouterModule, HasRoleDirective],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css',
 })
