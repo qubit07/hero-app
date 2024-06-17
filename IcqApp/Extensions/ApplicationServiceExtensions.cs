@@ -2,6 +2,7 @@
 using IcqApp.Helpers;
 using IcqApp.Interfaces;
 using IcqApp.Services;
+using IcqApp.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace IcqApp.Extensions
@@ -24,6 +25,8 @@ namespace IcqApp.Extensions
             services.Configure<CloudinarySettings>(config.GetSection("CloudSettings"));
             services.AddScoped<IPhotoService, PhotoService>();
             services.AddScoped<LogUserActivity>();
+            services.AddSignalR();
+            services.AddSingleton<PresenceTracker>();
 
             return services;
         }
