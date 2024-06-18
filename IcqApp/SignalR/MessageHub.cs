@@ -3,10 +3,12 @@ using IcqApp.DTOs;
 using IcqApp.Entities;
 using IcqApp.Extensions;
 using IcqApp.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.SignalR;
 
 namespace IcqApp.SignalR
 {
+    [Authorize]
     public class MessageHub : Hub
     {
         private readonly IMessageRepository _messageRepository;
