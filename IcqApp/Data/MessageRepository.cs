@@ -101,5 +101,13 @@ namespace IcqApp.Data
         {
             return await _dataContext.SaveChangesAsync() > 0;
         }
+
+        public async Task<Group> GetMessageGroupByConnectionId(string connectionId)
+        {
+            return await _dataContext.Groups
+                .Include(x => x.Connections)
+                .Where(x => x.Connections.Any(c => c.ConnectionId == connectionId))
+                .FirstOrDefaultAsync();
+        }
     }
 }

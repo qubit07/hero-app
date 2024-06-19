@@ -16,6 +16,7 @@ namespace IcqApp.Interfaces
         void RemoveConnection(Connection connection);
         Task<Connection> GetConnectionById(string connectionId);
         Task<Group> GetMessageGroup(string groupName);
+        Task<Group> GetMessageGroupByConnectionId(string connectionId);
 
     }
 }
