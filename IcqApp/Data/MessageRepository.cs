@@ -70,16 +70,15 @@ namespace IcqApp.Data
 
         public async Task<IEnumerable<MessageDto>> GetMessageThread(string currentUsername, string recipientUsername)
         {
-            var messages = await _dataContext.Messages
+            var query = _dataContext.Messages
                 .Include(u => u.Sender).ThenInclude(p => p.Photos)
                 .Include(u => u.Recipient).ThenInclude(p => p.Photos)
                 .Where(m => m.RecipientUsername == currentUsername && m.RecipientDeleted == false && m.SenderUsername == m.SenderUsername ||
                         m.RecipientUsername == recipientUsername && m.SenderDeleted && m.SenderUsername == currentUsername)
                 .OrderByDescending(m => m.MessageSend)
-                .ProjectTo<MessageDto>(_mapper.ConfigurationProvider)
-                .ToListAsync();
+                .AsQueryable();
 
-            var unreadMessages = messages.Where(m => m.DateRead == null && m.RecipientUsername == currentUsername).ToList();
+            var unreadMessages = query.Where(m => m.DateRead == null && m.RecipientUsername == currentUsername).ToList();
 
             if (unreadMessages.Any())
             {
@@ -89,7 +88,7 @@ namespace IcqApp.Data
                 }
             }
 
-            return messages;
+            return await query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
         public void RemoveConnection(Connection connection)
