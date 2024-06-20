@@ -9,9 +9,10 @@ import { routes } from './app.routes';
 import { errorInterceptor } from './interceptors/error.interceptor';
 import { jwtInterceptor } from './interceptors/jwt.interceptor';
 import { loadingInterceptor } from './interceptors/loading.interceptor';
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideToastr(), provideAnimations(),
   provideHttpClient(withInterceptors([errorInterceptor, jwtInterceptor, loadingInterceptor])),
-  importProvidersFrom(NgxSpinnerModule.forRoot({ type: 'line-scale-party' }))]
+  importProvidersFrom(NgxSpinnerModule.forRoot({ type: 'line-scale-party' })), BsModalService]
 };

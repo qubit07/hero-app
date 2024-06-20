@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, Input, ViewChild } from '@angular/core';
 import { MessageService } from '../../services/message.service';
 import { CommonModule } from '@angular/common';
 import { Message } from '../../models/message';
@@ -11,15 +11,19 @@ import { FormsModule, NgForm } from '@angular/forms';
   templateUrl: './member-messages.component.html',
   styleUrl: './member-messages.component.css'
 })
-export class MemberMessagesComponent {
+export class MemberMessagesComponent implements AfterViewChecked {
 
   @ViewChild('messageForm') messageForm?: NgForm;
+  @ViewChild('scrollMessages') scrollContainer?: any;
   @Input() username: string | undefined;
   messageContent = '';
 
 
   constructor(public messageService: MessageService) {
 
+  }
+  ngAfterViewChecked(): void {
+    this.scollToBottom();
   }
 
   sendMessage() {
@@ -28,6 +32,12 @@ export class MemberMessagesComponent {
     this.messageService.sendMessage(this.username, this.messageContent).then(() => {
       this.messageForm?.reset();
     })
+  }
+
+  private scollToBottom() {
+    if (this.scrollContainer) {
+      this.scrollContainer.nativeElement.scrollTop = this.scrollContainer.nativeElement.scollHeight;
+    }
   }
 
 }

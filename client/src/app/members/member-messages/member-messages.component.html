@@ -3,7 +3,8 @@
         <div *ngIf="(messageService.messageThread$ | async)?.length === 0">
             No Messages
         </div>
-        <ul *ngIf="(messageService.messageThread$ | async)!.length > 0" class="chat">
+        <ul *ngIf="(messageService.messageThread$ | async)!.length > 0" class="chat"
+            style="overflow: scroll; max-height: 500px; scroll-behavior: smooth;" #scrollMessages>
             <li *ngFor="let message of (messageService.messageThread$ | async)">
                 <div>
                     <span class="chat-img float-end">
