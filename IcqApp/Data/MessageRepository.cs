@@ -76,6 +76,7 @@ namespace IcqApp.Data
                 .Where(m => m.RecipientUsername == currentUsername && m.RecipientDeleted == false && m.SenderUsername == m.SenderUsername ||
                         m.RecipientUsername == recipientUsername && m.SenderDeleted && m.SenderUsername == currentUsername)
                 .OrderByDescending(m => m.MessageSend)
+                .ProjectTo<MessageDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
 
             var unreadMessages = messages.Where(m => m.DateRead == null && m.RecipientUsername == currentUsername).ToList();
@@ -88,18 +89,12 @@ namespace IcqApp.Data
                 }
             }
 
-            await _dataContext.SaveChangesAsync();
-            return _mapper.Map<IEnumerable<MessageDto>>(messages);
+            return messages;
         }
 
         public void RemoveConnection(Connection connection)
         {
             _dataContext.Connections.Remove(connection);
-        }
-
-        public async Task<bool> SaveAllAsync()
-        {
-            return await _dataContext.SaveChangesAsync() > 0;
         }
 
         public async Task<Group> GetMessageGroupByConnectionId(string connectionId)

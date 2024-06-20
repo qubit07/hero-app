@@ -21,6 +21,7 @@ namespace IcqApp.Extensions
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IFriendshipRepository, FriendshipRepository>();
             services.AddScoped<IMessageRepository, MessageRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.Configure<CloudinarySettings>(config.GetSection("CloudSettings"));
             services.AddScoped<IPhotoService, PhotoService>();
